@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? 💖</title>
+
+  <style>
+    body {
+      background-color: #ffe6ee;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #d6336c;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #adb5bd;
+      position: absolute;
+    }
+
+    #loveMessage {
+      display: none;
+      margin-top: 40px;
+      font-size: 22px;
+      color: #c9184a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hey beautiful 💕</h1>
+  <h2>Will you be my Valentine?</h2>
+
+  <img src="https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif" width="250">
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNo()">No 😅</button>
+  </div>
+
+  <div id="loveMessage">
+    <p>You just made me the happiest person alive 🥰</p>
+    <p>I can’t wait to spend Valentine’s Day with you 💘</p>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="250">
+  </div>
+
+  <script>
+    function sayYes() {
+      document.getElementById("loveMessage").style.display = "block";
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+  </script>
+
+</body>
+</html>
