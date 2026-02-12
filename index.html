@@ -66,20 +66,31 @@ button {
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
 }
 
-/* Heart shape after Yes with pulsing animation + shift left */
+/* Heart shape after Yes with smaller centered image + pulse */
 .corner-img.heart-shape {
-  width: 200px !important;
+  width: 200px !important; /* heart container size */
   height: 200px !important;
   clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
   box-shadow: 0 0 40px rgba(255, 20, 147, 0.8), 0 0 70px rgba(255, 105, 180, 0.5);
-  animation: pulseLeft 2s infinite ease-in-out;
+  animation: pulseHeart 2s infinite ease-in-out;
+
+  /* smaller image inside heart */
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+
+  /* center inside heart */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Pulse Animation with left shift */
-@keyframes pulseLeft {
-  0% { transform: translateX(-10px) scale(1); }
-  50% { transform: translateX(-10px) scale(1.05); }
-  100% { transform: translateX(-10px) scale(1); }
+/* Pulse animation for heart images */
+@keyframes pulseHeart {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 /* Positions */
@@ -240,7 +251,7 @@ function sayYes() {
   song.play();
   spawnHearts();
 
-  // Make images bigger + heart shaped + pulse
+  // Make images heart-shaped, smaller, and centered
   document.querySelectorAll(".corner-img").forEach(img => {
     img.classList.add("heart-shape");
   });
@@ -292,4 +303,5 @@ setInterval(createBgSparkle, 300);
 </script>
 </body>
 </html>
+
 
