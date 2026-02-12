@@ -38,6 +38,7 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
     #yesBtn {
@@ -109,16 +110,15 @@
       button { font-size: 16px; padding: 10px 18px; }
       .corner-img { width: 60px; height: 60px; }
     }
-
   </style>
 </head>
 
 <body>
 
-  <img src="YOUR_LEFT_PHOTO_URL" id="leftPhoto" class="corner-img">
-  <img src="YOUR_RIGHT_PHOTO_URL" id="rightPhoto" class="corner-img">
+  <!-- Updated Photos -->
+  <img src="IMG_4583.jpeg" id="leftPhoto" class="corner-img">
+  <img src="IMG_1749.jpeg" id="rightPhoto" class="corner-img">
 
-  <!-- QUESTION SECTION WRAPPED CLEANLY -->
   <div id="questionSection">
     <h1>Hey beautiful 💕</h1>
     <h2>Will you be my Valentine?</h2>
@@ -131,7 +131,6 @@
     </div>
   </div>
 
-  <!-- LOVE MESSAGE SECTION -->
   <div id="loveMessage">
     <p>I love you so much 🥰</p>
     <p>I can’t wait to spend Valentine’s Day with you 💘</p>
@@ -142,31 +141,29 @@
 
   <script>
     const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
     const loveMessage = document.getElementById("loveMessage");
     const song = document.getElementById("loveSong");
     const questionSection = document.getElementById("questionSection");
+
+    let yesScale = 1;
 
     function moveNo() {
       const x = Math.random() * (window.innerWidth - 100);
       const y = Math.random() * (window.innerHeight - 100);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
+
+      // Grow Yes button every hover
+      yesScale += 0.2;
+      yesBtn.style.transform = `scale(${yesScale})`;
     }
 
     function sayYes() {
-      // Hide entire question section
       questionSection.style.display = "none";
-
-      // Show love message
       loveMessage.style.display = "block";
-
-      // Change background for dramatic effect
       document.body.style.backgroundColor = "#ffccd5";
-
-      // Play music
       song.play();
-
-      // Spawn hearts
       spawnHearts();
     }
 
@@ -205,3 +202,4 @@
 
 </body>
 </html>
+
