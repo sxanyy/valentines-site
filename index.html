@@ -51,11 +51,11 @@ button {
   color: #c9184a;
 }
 
-/* Corner Images */
+/* Corner Images - Bigger initially */
 .corner-img {
   position: fixed;
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50%;
   z-index: 1000;
@@ -64,17 +64,36 @@ button {
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
 }
 
+/* Heart shape after Yes with pulsing animation */
 .corner-img.heart-shape {
-  width: 150px !important;
-  height: 150px !important;
+  width: 180px !important;
+  height: 180px !important;
   clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
-  box-shadow: 0 0 30px rgba(255, 20, 147, 0.8), 0 0 60px rgba(255, 105, 180, 0.5);
+  box-shadow: 0 0 40px rgba(255, 20, 147, 0.8), 0 0 70px rgba(255, 105, 180, 0.5);
+  animation: pulse 2s infinite ease-in-out;
 }
 
 #topLeft { top: 10px; left: 10px; }
 #topRight { top: 10px; right: 10px; }
 #bottomLeft { bottom: 10px; left: 10px; }
 #bottomRight { bottom: 10px; right: 10px; }
+
+/* GIF Glow after Yes */
+#loveMessage img {
+  transition: all 1s ease;
+}
+#loveMessage.showGlow img {
+  box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+  border-radius: 20px;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
 /* Sparkles */
 .sparkle {
@@ -113,6 +132,7 @@ button {
   pointer-events: none;
   z-index: 999;
   text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff69b4;
+  animation: floatHeart 3s linear forwards, pulse 2s infinite ease-in-out;
 }
 
 @keyframes floatHeart {
@@ -121,7 +141,7 @@ button {
 }
 
 @media (max-width: 500px) {
-  .corner-img { width: 60px; height: 60px; }
+  .corner-img { width: 80px; height: 80px; }
 }
 </style>
 </head>
@@ -194,10 +214,13 @@ function sayYes() {
   song.play();
   spawnHearts();
 
-  // Make images bigger + heart shaped
+  // Make images bigger + heart shaped + pulse
   document.querySelectorAll(".corner-img").forEach(img => {
     img.classList.add("heart-shape");
   });
+
+  // Add pink glow + pulse to main GIF
+  loveMessage.classList.add("showGlow");
 }
 
 /* Floating Hearts */
@@ -226,7 +249,6 @@ setInterval(() => {
   document.body.appendChild(flower);
   setTimeout(()=>flower.remove(),10000);
 },500);
-
 </script>
 
 </body>
