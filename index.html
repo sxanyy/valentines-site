@@ -62,53 +62,35 @@ button {
   border-radius: 50%;
   z-index: 1000;
   border: 3px solid white;
+  transition: all 1s ease, box-shadow 1s ease;
   transition: all 1s ease, box-shadow 1s ease, transform 1s ease;
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
 }
 
-/* Heart shape after Yes with smaller centered image + pulse */
+/* Heart shape after Yes with pulsing animation */
+/* Heart shape after Yes with pulsing animation + shift left */
 .corner-img.heart-shape {
-  width: 200px !important; /* heart container size */
+  width: 200px !important;
   height: 200px !important;
   clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
   box-shadow: 0 0 40px rgba(255, 20, 147, 0.8), 0 0 70px rgba(255, 105, 180, 0.5);
-  animation: pulseHeart 2s infinite ease-in-out;
-
-  /* smaller image inside heart */
-  object-fit: cover;
-  width: 120px;
-  height: 120px;
-
-  /* center inside heart */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite ease-in-out;
+  animation: pulseLeft 2s infinite ease-in-out;
 }
 
-/* Pulse animation for heart images */
-@keyframes pulseHeart {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.05); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+/* Pulse Animation with left shift */
+@keyframes pulseLeft {
+  0% { transform: translateX(-10px) scale(1); }
+  50% { transform: translateX(-10px) scale(1.05); }
+  100% { transform: translateX(-10px) scale(1); }
 }
 
 /* Positions */
-#topLeft { top: 10px; left: 10px; }
-#topRight { top: 10px; right: 10px; }
-#bottomLeft { bottom: 10px; left: 10px; }
-#bottomRight { bottom: 10px; right: 10px; }
-
-/* GIF Glow after Yes */
-#loveMessage img {
-  transition: all 1s ease;
-}
-#loveMessage.showGlow img {
-  box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
-  border-radius: 20px;
+@@ -91,198 +98,198 @@
   animation: pulse 2s infinite ease-in-out;
 }
 
+/* Pulse Animation */
 /* General pulse animation for GIF */
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -251,7 +233,7 @@ function sayYes() {
   song.play();
   spawnHearts();
 
-  // Make images heart-shaped, smaller, and centered
+  // Make images bigger + heart shaped + pulse
   document.querySelectorAll(".corner-img").forEach(img => {
     img.classList.add("heart-shape");
   });
@@ -303,5 +285,3 @@ setInterval(createBgSparkle, 300);
 </script>
 </body>
 </html>
-
-
