@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Will You Be My Valentine? 💖</title>
 
+<!-- Prettier Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
   background-color: #ffe6ee;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   padding-top: 80px;
   margin: 0;
@@ -18,8 +21,8 @@ body {
   transition: background-color 1s ease;
 }
 
-h1 { color: #d6336c; font-size: 26px; }
-h2 { font-size: 20px; }
+h1 { color: #d6336c; font-size: 28px; }
+h2 { font-size: 22px; }
 
 .buttons { margin-top: 30px; }
 
@@ -28,13 +31,17 @@ button {
   padding: 12px 24px;
   margin: 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
 
-#yesBtn { background-color: #ff4d6d; color: white; }
+#yesBtn { 
+  background-color: #ff4d6d; 
+  color: white; 
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
+}
 #noBtn { background-color: #adb5bd; position: absolute; }
 
 #loveMessage {
@@ -53,7 +60,15 @@ button {
   border-radius: 50%;
   z-index: 1000;
   border: 3px solid white;
-  transition: all 1s ease;
+  transition: all 1s ease, box-shadow 1s ease;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+}
+
+.corner-img.heart-shape {
+  width: 150px !important;
+  height: 150px !important;
+  clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.8), 0 0 60px rgba(255, 105, 180, 0.5);
 }
 
 #topLeft { top: 10px; left: 10px; }
@@ -61,18 +76,13 @@ button {
 #bottomLeft { bottom: 10px; left: 10px; }
 #bottomRight { bottom: 10px; right: 10px; }
 
-/* Heart shape after Yes */
-.heart-shape {
-  width: 150px !important;
-  height: 150px !important;
-  clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
-}
-
 /* Sparkles */
 .sparkle {
   position: absolute;
-  font-size: 14px;
+  font-size: 16px;
   pointer-events: none;
+  color: #ff69b4;
+  text-shadow: 0 0 6px #ff69b4, 0 0 12px #ff1493;
   animation: sparkleFade 1s linear forwards;
 }
 
@@ -102,6 +112,7 @@ button {
   animation: floatHeart 3s linear forwards;
   pointer-events: none;
   z-index: 999;
+  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff69b4;
 }
 
 @keyframes floatHeart {
@@ -112,7 +123,6 @@ button {
 @media (max-width: 500px) {
   .corner-img { width: 60px; height: 60px; }
 }
-
 </style>
 </head>
 
@@ -121,8 +131,8 @@ button {
 <!-- FOUR IMAGES -->
 <img src="IMG_4583.jpeg" class="corner-img" id="topLeft">
 <img src="IMG_1749.jpeg" class="corner-img" id="topRight">
-<img src="IMG_4583.jpeg" class="corner-img" id="bottomLeft">
-<img src="IMG_1749.jpeg" class="corner-img" id="bottomRight">
+<img src="IMG_0844.jpeg" class="corner-img" id="bottomLeft">
+<img src="IMG_5287.jpeg" class="corner-img" id="bottomRight">
 
 <div id="questionSection">
   <h1>Hey beautiful 💕</h1>
@@ -137,8 +147,9 @@ button {
 </div>
 
 <div id="loveMessage">
-  <p>I love you so much 🥰</p>
-  <p>I can’t wait to spend Valentine’s Day with you 💘</p>
+  <p>Thank you for being my girlfriend and my beautiful valentine 🥰</p>
+  <p> I love you, and I can’t wait to spend Valentine’s Day with you 💘</p>
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTRmaWVlMnh0czFrejc0NTBjbmx6cG51ZWMwb3N2N2JkbHlkeHBnOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mNkJJsPXuciHnmSgWy/giphy.gif" width="250">
 </div>
 
 <audio id="loveSong" src="Gigi_Perez_-_Sailor_Song_(mp3.pm).mp3"></audio>
@@ -220,4 +231,3 @@ setInterval(() => {
 
 </body>
 </html>
-
