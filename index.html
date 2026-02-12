@@ -1,205 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will You Be My Valentine? 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine? 💖</title>
 
-  <style>
-    body {
-      background-color: #ffe6ee;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 80px;
-      margin: 0;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-      transition: background-color 1s ease;
-    }
+<style>
+body {
+  background-color: #ffe6ee;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 80px;
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  transition: background-color 1s ease;
+}
 
-    h1 {
-      color: #d6336c;
-      font-size: 26px;
-    }
+h1 { color: #d6336c; font-size: 26px; }
+h2 { font-size: 20px; }
 
-    h2 {
-      font-size: 20px;
-    }
+.buttons { margin-top: 30px; }
 
-    .buttons {
-      margin-top: 30px;
-    }
+button {
+  font-size: 18px;
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+}
 
-    button {
-      font-size: 18px;
-      padding: 12px 24px;
-      margin: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+#yesBtn { background-color: #ff4d6d; color: white; }
+#noBtn { background-color: #adb5bd; position: absolute; }
 
-    #yesBtn {
-      background-color: #ff4d6d;
-      color: white;
-    }
+#loveMessage {
+  display: none;
+  margin-top: 40px;
+  font-size: 20px;
+  color: #c9184a;
+}
 
-    #noBtn {
-      background-color: #adb5bd;
-      position: absolute;
-    }
+/* Corner Images */
+.corner-img {
+  position: fixed;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 1000;
+  border: 3px solid white;
+  transition: all 1s ease;
+}
 
-    #loveMessage {
-      display: none;
-      margin-top: 40px;
-      font-size: 20px;
-      color: #c9184a;
-    }
+#topLeft { top: 10px; left: 10px; }
+#topRight { top: 10px; right: 10px; }
+#bottomLeft { bottom: 10px; left: 10px; }
+#bottomRight { bottom: 10px; right: 10px; }
 
-    .corner-img {
-      position: fixed;
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      object-fit: cover;
-      z-index: 1000;
-      border: 3px solid white;
-    }
+/* Heart shape after Yes */
+.heart-shape {
+  width: 150px !important;
+  height: 150px !important;
+  clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
+}
 
-    #leftPhoto {
-      top: 10px;
-      left: 10px;
-    }
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  font-size: 14px;
+  pointer-events: none;
+  animation: sparkleFade 1s linear forwards;
+}
 
-    #rightPhoto {
-      top: 10px;
-      right: 10px;
-    }
+@keyframes sparkleFade {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
 
-    .flower {
-      position: fixed;
-      font-size: 20px;
-      animation: floatUp linear forwards;
-      pointer-events: none;
-      z-index: 0;
-    }
+/* Floating Flowers */
+.flower {
+  position: fixed;
+  font-size: 20px;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-110vh); opacity: 0; }
-    }
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
 
-    .heart {
-      position: fixed;
-      font-size: 24px;
-      animation: floatHeart 3s linear forwards;
-      pointer-events: none;
-      z-index: 999;
-    }
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  font-size: 24px;
+  animation: floatHeart 3s linear forwards;
+  pointer-events: none;
+  z-index: 999;
+}
 
-    @keyframes floatHeart {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-80vh) scale(1.5); opacity: 0; }
-    }
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80vh) scale(1.5); opacity: 0; }
+}
 
-    @media (max-width: 500px) {
-      h1 { font-size: 22px; }
-      h2 { font-size: 18px; }
-      button { font-size: 16px; padding: 10px 18px; }
-      .corner-img { width: 60px; height: 60px; }
-    }
-  </style>
+@media (max-width: 500px) {
+  .corner-img { width: 60px; height: 60px; }
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- Updated Photos -->
-  <img src="IMG_4583.jpeg" id="leftPhoto" class="corner-img">
-  <img src="IMG_1749.jpeg" id="rightPhoto" class="corner-img">
+<!-- FOUR IMAGES -->
+<img src="IMG_4583.jpeg" class="corner-img" id="topLeft">
+<img src="IMG_1749.jpeg" class="corner-img" id="topRight">
+<img src="IMG_0844.jpeg" class="corner-img" id="bottomLeft">
+<img src="IMG_5287.jpeg" class="corner-img" id="bottomRight">
 
-  <div id="questionSection">
-    <h1>Hey beautiful 💕</h1>
-    <h2>Will you be my Valentine?</h2>
+<div id="questionSection">
+  <h1>Hey beautiful 💕</h1>
+  <h2>Will you be my Valentine?</h2>
 
-    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm0xMzNkc2o2dnVqOWNoMXJzNTEwbnZtNzNiY3FoemJlOWs2cXY1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n3KZaXLYLuyNSHEvbm/giphy.gif" width="250">
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm0xMzNkc2o2dnVqOWNoMXJzNTEwbnZtNzNiY3FoemJlOWs2cXY1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n3KZaXLYLuyNSHEvbm/giphy.gif" width="250">
 
-    <div class="buttons">
-      <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
-      <button id="noBtn" onmouseover="moveNo()">No (PLEASEEEE)</button>
-    </div>
+  <div class="buttons">
+    <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNo()">No (PLEASEEEE)</button>
   </div>
+</div>
 
-  <div id="loveMessage">
-    <p>I love you so much 🥰</p>
-    <p>I can’t wait to spend Valentine’s Day with you 💘</p>
-    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTRmaWVlMnh0czFrejc0NTBjbmx6cG51ZWMwb3N2N2JkbHlkeHBnOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mNkJJsPXuciHnmSgWy/giphy.gif" width="250">
-  </div>
+<div id="loveMessage">
+  <p>Thank you for being my girlfriend and my beautiful valentine 🥰</p>
+  <p> I love you, and I can’t wait to spend Valentine’s Day with you 💘</p>
+</div>
 
-  <audio id="loveSong" src="Gigi_Perez_-_Sailor_Song_(mp3.pm).mp3"></audio>
+<audio id="loveSong" src="Gigi_Perez_-_Sailor_Song_(mp3.pm).mp3"></audio>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const loveMessage = document.getElementById("loveMessage");
-    const song = document.getElementById("loveSong");
-    const questionSection = document.getElementById("questionSection");
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const loveMessage = document.getElementById("loveMessage");
+const questionSection = document.getElementById("questionSection");
+const song = document.getElementById("loveSong");
 
-    let yesScale = 1;
+let yesScale = 1;
 
-    function moveNo() {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 100);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
+/* Grow Yes when No hovered */
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 
-      // Grow Yes button every hover
-      yesScale += 0.2;
-      yesBtn.style.transform = `scale(${yesScale})`;
-    }
+  yesScale += 0.2;
+  yesBtn.style.transform = `scale(${yesScale})`;
+}
 
-    function sayYes() {
-      questionSection.style.display = "none";
-      loveMessage.style.display = "block";
-      document.body.style.backgroundColor = "#ffccd5";
-      song.play();
-      spawnHearts();
-    }
+/* Sparkle Trail */
+yesBtn.addEventListener("mousemove", (e) => {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+  sparkle.innerText = "✨";
+  sparkle.style.left = e.pageX + "px";
+  sparkle.style.top = e.pageY + "px";
+  document.body.appendChild(sparkle);
 
-    function spawnHearts() {
-      for (let i = 0; i < 40; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerText = "💖";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.bottom = "0px";
-        document.body.appendChild(heart);
+  setTimeout(() => sparkle.remove(), 1000);
+});
 
-        setTimeout(() => {
-          heart.remove();
-        }, 3000);
-      }
-    }
+/* YES CLICK */
+function sayYes() {
+  questionSection.style.display = "none";
+  loveMessage.style.display = "block";
+  document.body.style.backgroundColor = "#ffccd5";
+  song.play();
+  spawnHearts();
 
-    const flowers = ["🌸", "🌷", "🌹", "💐", "🌺"];
+  // Make images bigger + heart shaped
+  document.querySelectorAll(".corner-img").forEach(img => {
+    img.classList.add("heart-shape");
+  });
+}
 
-    setInterval(() => {
-      const flower = document.createElement("div");
-      flower.classList.add("flower");
-      flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-      flower.style.left = Math.random() * window.innerWidth + "px";
-      flower.style.bottom = "0px";
-      flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+/* Floating Hearts */
+function spawnHearts() {
+  for (let i = 0; i < 40; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.bottom = "0px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
 
-      document.body.appendChild(flower);
+/* Continuous Flowers */
+const flowers = ["🌸","🌷","🌹","💐","🌺"];
 
-      setTimeout(() => {
-        flower.remove();
-      }, 10000);
-    }, 500);
-  </script>
+setInterval(() => {
+  const flower = document.createElement("div");
+  flower.classList.add("flower");
+  flower.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+  flower.style.left = Math.random()*window.innerWidth + "px";
+  flower.style.bottom = "0px";
+  flower.style.animationDuration = (5+Math.random()*5)+"s";
+  document.body.appendChild(flower);
+  setTimeout(()=>flower.remove(),10000);
+},500);
+
+</script>
 
 </body>
 </html>
+
 
