@@ -62,17 +62,24 @@ button {
   border-radius: 50%;
   z-index: 1000;
   border: 3px solid white;
-  transition: all 1s ease, box-shadow 1s ease;
+  transition: all 1s ease, box-shadow 1s ease, transform 1s ease;
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
 }
 
-/* Heart shape after Yes with pulsing animation */
+/* Heart shape after Yes with pulsing animation + shift left */
 .corner-img.heart-shape {
   width: 200px !important;
   height: 200px !important;
   clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
   box-shadow: 0 0 40px rgba(255, 20, 147, 0.8), 0 0 70px rgba(255, 105, 180, 0.5);
-  animation: pulse 2s infinite ease-in-out;
+  animation: pulseLeft 2s infinite ease-in-out;
+}
+
+/* Pulse Animation with left shift */
+@keyframes pulseLeft {
+  0% { transform: translateX(-10px) scale(1); }
+  50% { transform: translateX(-10px) scale(1.05); }
+  100% { transform: translateX(-10px) scale(1); }
 }
 
 /* Positions */
@@ -91,7 +98,7 @@ button {
   animation: pulse 2s infinite ease-in-out;
 }
 
-/* Pulse Animation */
+/* General pulse animation for GIF */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
