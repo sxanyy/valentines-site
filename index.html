@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Will You Be My Valentine? 💖</title>
 
-<!-- Prettier Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 body {
   background-color: #ffe6ee;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
   padding-top: 80px;
   margin: 0;
@@ -21,29 +18,23 @@ body {
   transition: background-color 1s ease;
 }
 
-/* Headings */
-h1 { color: #d6336c; font-size: 28px; }
-h2 { font-size: 22px; }
+h1 { color: #d6336c; font-size: 26px; }
+h2 { font-size: 20px; }
 
 .buttons { margin-top: 30px; }
 
-/* Buttons */
 button {
   font-size: 18px;
   padding: 12px 24px;
   margin: 10px;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   position: relative;
 }
 
-#yesBtn { 
-  background-color: #ff4d6d; 
-  color: white; 
-  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
-}
+#yesBtn { background-color: #ff4d6d; color: white; }
 #noBtn { background-color: #adb5bd; position: absolute; }
 
 #loveMessage {
@@ -56,55 +47,32 @@ button {
 /* Corner Images */
 .corner-img {
   position: fixed;
-  width: 150px;
-  height: 150px;
+  width: 75px;
+  height: 75px;
   object-fit: cover;
   border-radius: 50%;
   z-index: 1000;
   border: 3px solid white;
-  transition: all 1s ease, box-shadow 1s ease;
-  transition: all 1s ease, box-shadow 1s ease, transform 1s ease;
-  box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+  transition: all 1s ease;
 }
 
-/* Heart shape after Yes with pulsing animation */
-/* Heart shape after Yes with pulsing animation + shift left */
-.corner-img.heart-shape {
-  width: 200px !important;
-  height: 200px !important;
+#topLeft { top: 10px; left: 10px; }
+#topRight { top: 10px; right: 10px; }
+#bottomLeft { bottom: 10px; left: 10px; }
+#bottomRight { bottom: 10px; right: 10px; }
+
+/* Heart shape after Yes */
+.heart-shape {
+  width: 150px !important;
+  height: 150px !important;
   clip-path: path("M75 140 L20 80 A35 35 0 1 1 75 40 A35 35 0 1 1 130 80 Z");
-  box-shadow: 0 0 40px rgba(255, 20, 147, 0.8), 0 0 70px rgba(255, 105, 180, 0.5);
-  animation: pulse 2s infinite ease-in-out;
-  animation: pulseLeft 2s infinite ease-in-out;
 }
 
-/* Pulse Animation with left shift */
-@keyframes pulseLeft {
-  0% { transform: translateX(-10px) scale(1); }
-  50% { transform: translateX(-10px) scale(1.05); }
-  100% { transform: translateX(-10px) scale(1); }
-}
-
-/* Positions */
-@@ -91,198 +98,198 @@
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Pulse Animation */
-/* General pulse animation for GIF */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Sparkle trail from cursor */
+/* Sparkles */
 .sparkle {
   position: absolute;
-  font-size: 16px;
+  font-size: 14px;
   pointer-events: none;
-  color: #ff69b4;
-  text-shadow: 0 0 6px #ff69b4, 0 0 12px #ff1493;
   animation: sparkleFade 1s linear forwards;
 }
 
@@ -131,10 +99,9 @@ button {
 .heart {
   position: fixed;
   font-size: 24px;
-  animation: floatHeart 3s linear forwards, pulse 2s infinite ease-in-out;
+  animation: floatHeart 3s linear forwards;
   pointer-events: none;
   z-index: 999;
-  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff69b4;
 }
 
 @keyframes floatHeart {
@@ -142,27 +109,10 @@ button {
   100% { transform: translateY(-80vh) scale(1.5); opacity: 0; }
 }
 
-/* Background sparkles */
-.bg-sparkle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: rgba(255, 182, 193, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: bgSparkle linear infinite;
-  z-index: 0;
-}
-
-@keyframes bgSparkle {
-  0% { transform: translateY(100vh) scale(1); opacity: 0; }
-  50% { opacity: 0.6; }
-  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-}
-
 @media (max-width: 500px) {
-  .corner-img { width: 80px; height: 80px; }
+  .corner-img { width: 60px; height: 60px; }
 }
+
 </style>
 </head>
 
@@ -222,6 +172,7 @@ yesBtn.addEventListener("mousemove", (e) => {
   sparkle.style.left = e.pageX + "px";
   sparkle.style.top = e.pageY + "px";
   document.body.appendChild(sparkle);
+
   setTimeout(() => sparkle.remove(), 1000);
 });
 
@@ -233,13 +184,10 @@ function sayYes() {
   song.play();
   spawnHearts();
 
-  // Make images bigger + heart shaped + pulse
+  // Make images bigger + heart shaped
   document.querySelectorAll(".corner-img").forEach(img => {
     img.classList.add("heart-shape");
   });
-
-  // Add pink glow + pulse to main GIF
-  loveMessage.classList.add("showGlow");
 }
 
 /* Floating Hearts */
@@ -257,6 +205,7 @@ function spawnHearts() {
 
 /* Continuous Flowers */
 const flowers = ["🌸","🌷","🌹","💐","🌺"];
+
 setInterval(() => {
   const flower = document.createElement("div");
   flower.classList.add("flower");
@@ -268,20 +217,7 @@ setInterval(() => {
   setTimeout(()=>flower.remove(),10000);
 },500);
 
-/* Continuous background sparkles */
-function createBgSparkle() {
-  const sparkle = document.createElement("div");
-  sparkle.classList.add("bg-sparkle");
-  sparkle.style.left = Math.random() * window.innerWidth + "px";
-  sparkle.style.top = Math.random() * window.innerHeight + "px";
-  sparkle.style.animationDuration = (5 + Math.random() * 5) + "s";
-  document.body.appendChild(sparkle);
-  setTimeout(() => sparkle.remove(), 10000);
-}
-
-/* Keep background sparkles coming */
-setInterval(createBgSparkle, 300);
-
 </script>
+
 </body>
 </html>
